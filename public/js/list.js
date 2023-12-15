@@ -1,7 +1,8 @@
+const host = window.location.orgin
 window.addEventListener('DOMContentLoaded', ()=>{
     const user = localStorage.getItem('user')
     const ul = document.getElementById('similar-movies')
-    fetch(`http://localhost:3000/api/getList/${user}`).then(res=>res.json()).then(obj => {
+    fetch(`${host}/api/getList/${user}`).then(res=>res.json()).then(obj => {
         obj.list.forEach(movie => {
             let li = document.createElement('li')
             li.innerHTML = `
@@ -13,7 +14,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
             `
             li.querySelector('button').addEventListener('click',()=>{
                 const data = {title: movie.title, user: user}
-                fetch('http://localhost:3000/api/removeMovie', {
+                fetch(`${host}/api/removeMovie`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json"

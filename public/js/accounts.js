@@ -1,3 +1,5 @@
+const host = window.location.origin
+
 class AccountHandler {
     constructor(){
         this.signUpBtn = document.getElementById('signupBtn')
@@ -37,7 +39,7 @@ class AccountHandler {
                     user: this.createUsername.value,
                     password: this.createPassword.value
                 }
-                fetch('http://localhost:3000/api/signUp', {
+                fetch(`${host}/api/signUp`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -71,7 +73,7 @@ class AccountHandler {
             this.userInit()
         })
         this.login.addEventListener('click',()=>{
-            fetch(`http://localhost:3000/api/login?user=${this.loginUsername.value}&password=${this.loginPassword.value}`).then(res => res.json()).then(obj => {
+            fetch(`${host}/api/login?user=${this.loginUsername.value}&password=${this.loginPassword.value}`).then(res => res.json()).then(obj => {
                 if (obj.result.error) {
                     this.loginError.style.display = 'block'
                     this.loginError.textContent = obj.result.error

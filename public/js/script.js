@@ -1,11 +1,14 @@
+const host = window.location.origin
+
 const inputMovie = document.getElementById('input-movie')
 const similarMovies = document.getElementById('similar-movies')
 const leftButton = document.getElementById('scroll-left')
 const rightButton = document.getElementById('scroll-right')
+
 inputMovie.addEventListener('keydown', e=>{
     if (e.key === 'Enter'){
         similarMovies.innerHTML = ''
-        fetch(`http://localhost:3000/api/movie?search=${inputMovie.value}`).then(res =>res.json()).then(movies => {
+        fetch(`${host}/api/movie?search=${inputMovie.value}`).then(res =>res.json()).then(movies => {
             if (movies.error) {
                 similarMovies.innerHTML = `<h1>${movies.error}</h1>`
             } else {
@@ -29,7 +32,7 @@ inputMovie.addEventListener('keydown', e=>{
                             average: movie.vote_average,
                             user: localStorage.getItem('user')
                         }
-                        fetch('http://localhost:3000/api/addMovie', {
+                        fetch(`${host}/api/addMovie`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
