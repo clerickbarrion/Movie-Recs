@@ -1,4 +1,4 @@
-const host = window.location.orgin
+const host = window.location.origin
 window.addEventListener('DOMContentLoaded', ()=>{
     const user = localStorage.getItem('user')
     const ul = document.getElementById('similar-movies')

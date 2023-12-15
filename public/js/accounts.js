@@ -1,5 +1,3 @@
-const host = window.location.origin
-
 class AccountHandler {
     constructor(){
         this.signUpBtn = document.getElementById('signupBtn')
