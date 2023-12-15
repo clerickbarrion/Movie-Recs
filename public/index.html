@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recs</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- popups -->
+    <section id="message"></section>
+
+    <section id="log-in-page">
+        <p class="close">X</p>
+        <h1>Log in</h1>
+        <small id="log-in-error"></small>
+        <div>
+            <label for="login-username">Username:</label>
+            <input id="login-username">
+        </div>
+        <div>
+            <label for="login-password">Password:</label>
+            <input id="login-password" type="password">
+        </div>
+        <button id="login">Log in</button>
+    </section>
+
+    <section id="sign-up-page">
+        <p class="close">X</p>
+        <h1>Create an Account</h1>
+        <small id="create-account-error"></small>
+        <div>
+            <label for="create-username">Username:</label>
+            <input id="create-username" placeholder="max 20 chars">
+        </div>
+        <div>
+            <label for="create-password">Password:</label>
+            <input id="create-password" type="password">
+        </div>
+        <div>
+            <label for="confirm-password">Confirm Password:</label>
+            <input id="confirm-password" type="password">
+        </div>
+        <button id="create-account">Create Account</button>
+    </section>
+
+    <!-- content -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Recs</a></li>
+                <li><a href="html/list.html">Your List</a></li>
+            </ul>
+        </nav>
+        <h1>Movie Recs!</h1>
+        <nav>
+            <ul>
+                <li id="loginBtn">Log in</li>
+                <li id="signupBtn">Sign Up</li>
+            </ul>
+            <ul id="logged-in">
+                <li id="username"></li>
+                <li id='log-out'>Logout</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="input-container">
+            <label for="input-movie">Enter a Movie</label>
+            <input id="input-movie">
+        </div>
+        
+        <article>
+            <button id="scroll-left"><</button>
+            <button id="scroll-right">></button>
+            <h1>Similar Movies</h1>
+            <ul id="similar-movies">
+                
+            </ul>
+        </article>
+    </main>
+
+    <footer>
+        <ul>
+            <li>Original API</li>
+            <hr>
+            </div>
+                <a href="https://developer.themoviedb.org/docs">The Movie DB</a>
+            </div>
+        </ul>
+        <ul>
+            <li>Contact Information</li>
+            <hr>
+            <li>clerickbarrion@gmail.com</li>
+            <li>github.com/clerickbarrion</li>
+        </ul>
+        <ul>
+            <li>Learn More</li>
+            <hr>
+            <li>About</li>
+            <li>Tutorial</li>
+            <li>Terms of Service</li>
+        </ul>
+    </footer>
+</body>
+<script src="js/script.js"></script>
+<script src="js/accounts.js"></script>
+</html>

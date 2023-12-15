@@ -1,0 +1,17 @@
+main{
+    article{
+        ul{
+            figure{
+                height:initial;
+                max-height: none;
+            }
+            li {
+                cursor:auto;
+                button:hover {
+                    background-color: red;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

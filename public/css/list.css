@@ -1,0 +1,11 @@
+main article ul figure {
+  height: initial;
+  max-height: none;
+}
+main article ul li {
+  cursor: auto;
+}
+main article ul li button:hover {
+  background-color: red;
+  cursor: pointer;
+}/*# sourceMappingURL=list.css.map */

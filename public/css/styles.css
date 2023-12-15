@@ -1,0 +1,213 @@
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #592941;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+small {
+  color: red;
+}
+
+#message {
+  display: none;
+  position: absolute;
+  width: 100%;
+  justify-content: center;
+  background-color: green;
+  color: black;
+}
+
+#sign-up-page, #log-in-page {
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: absolute;
+  background-color: #592941;
+  color: #52B788;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+}
+#sign-up-page h1, #log-in-page h1 {
+  margin: initial;
+}
+#sign-up-page .close, #log-in-page .close {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+}
+#sign-up-page .close:hover, #log-in-page .close:hover {
+  color: red;
+  cursor: pointer;
+}
+#sign-up-page div, #log-in-page div {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+#sign-up-page div :nth-child(2), #log-in-page div :nth-child(2) {
+  width: 50%;
+}
+#sign-up-page #warning, #log-in-page #warning {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#log-in-page {
+  justify-content: center;
+  gap: 1rem;
+}
+
+header {
+  display: flex;
+  color: #EDE5A6;
+  background-color: #006B3E;
+}
+header h1 {
+  margin: auto;
+}
+header nav {
+  display: flex;
+  margin: auto;
+}
+header nav ul {
+  gap: 15px;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+header nav ul li {
+  display: flex;
+  background-color: #592941;
+  align-items: center;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 1rem;
+  cursor: pointer;
+}
+header nav ul li a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+main {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main #input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+main #input-container label {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #EDE5A6;
+}
+main #input-container input {
+  width: 100%;
+}
+main article {
+  width: 70%;
+  margin: auto;
+  overflow: hidden;
+  height: 70vh;
+}
+main article #scroll-right, main article #scroll-left {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 2rem;
+  background-color: #EDE5A6;
+  color: #592941;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+main article #scroll-right {
+  left: 90%;
+}
+main article #scroll-left {
+  right: 90%;
+}
+main article h1 {
+  font-size: 2.2rem;
+  text-align: center;
+  color: #EDE5A6;
+}
+main article ul {
+  list-style-type: none;
+  display: flex;
+  max-width: 100vw;
+  overflow: scroll;
+  padding: 0;
+  margin: auto 0px;
+  scroll-behavior: smooth;
+}
+main article ul li button {
+  cursor: pointer;
+}
+main article ul li button:hover {
+  background-color: green;
+}
+main article ul figure {
+  background-color: lavender;
+  padding: 1rem;
+  box-shadow: rgb(51, 51, 51) 5px 0px 15px, rgb(51, 51, 51) -5px 0px 15px;
+  width: 10vw;
+  height: 30%;
+  max-height: 30%;
+  overflow: scroll;
+}
+main article ul figure figcaption {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #592941;
+  font-weight: bold;
+}
+main article ul figure img {
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #006B3E;
+  color: #EDE5A6;
+  flex-wrap: wrap;
+}
+
+footer ul {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+
+footer ul :nth-child(1) {
+  font-size: 1.3rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a img {
+  width: 35px;
+  height: 30px;
+}/*# sourceMappingURL=styles.css.map */
