@@ -5,18 +5,26 @@ const similarMovies = document.getElementById('similar-movies')
 const leftButton = document.getElementById('scroll-left')
 const rightButton = document.getElementById('scroll-right')
 
+// gets similar movies when enter key pressed
 inputMovie.addEventListener('keydown', e=>{
     if (e.key === 'Enter'){
         similarMovies.innerHTML = ''
+        // get request to similar movie endpoint 
         fetch(`${host}/api/movie?search=${inputMovie.value}`).then(res =>res.json()).then(movies => {
+            // shows error
             if (movies.error) {
                 similarMovies.innerHTML = `<h1>${movies.error}</h1>`
             } else {
+                // takes each movie writes its information with an ul
                 movies.forEach(movie =>{
                     const li = document.createElement('li')
-                    let imgPath = 'https://www.themoviedb.org/t/p/w440_and_h660_face/'
+                    // img path template
+                    let imgPath = 'https://www.themoviedb.org/t/p/w440_and_h660_face'
+                    // 'img not found image' if no poster path
                     if (movie.poster_path == null){imgPath = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'}
+                    // appends path to template
                     else {imgPath += movie.poster_path}
+                    // adds movie info to li
                     li.innerHTML = `
                     <figure>
                         <button>Add to list</button>
@@ -25,6 +33,7 @@ inputMovie.addEventListener('keydown', e=>{
                         <p>${movie.overview}</p>
                     </figure>
                     `
+                    // event listener to add to list button
                     li.querySelector('button').addEventListener('click', ()=>{
                         const data = {
                             imgPath: imgPath,
@@ -32,6 +41,7 @@ inputMovie.addEventListener('keydown', e=>{
                             average: movie.vote_average,
                             user: localStorage.getItem('user')
                         }
+                        // sends post request to add movie to database
                         fetch(`${host}/api/addMovie`, {
                             method: "POST",
                             headers: {
@@ -40,6 +50,7 @@ inputMovie.addEventListener('keydown', e=>{
                             body: JSON.stringify(data)
                         })
                     })
+                    // adds li to ul
                     similarMovies.appendChild(li)
                 })
             }
@@ -47,6 +58,7 @@ inputMovie.addEventListener('keydown', e=>{
     }
 })
 
+// scroll left or right in carousel
 rightButton.addEventListener('click',()=>{
     similarMovies.scrollLeft += window.innerWidth*0.70
 })

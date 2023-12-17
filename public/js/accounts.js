@@ -19,24 +19,42 @@ class AccountHandler {
         this.loginError = document.getElementById('log-in-error')
         this.login = document.getElementById('login')
 
+        // exits page when x pressed
         Array.from(this.closeBtns).forEach(button =>{
             button.addEventListener('click', ()=>{
                 button.parentNode.style.display = 'none'
             })
         })
+    }
+    userInit(){
+        let user = localStorage.getItem('user')
+        // sets user to anonymous if not not set
+        if (!user || user === 'ANONYMOUS') {
+            localStorage.setItem('user', 'ANONYMOUS')
+            // displays sign up buttons
+            this.signUpBtn.parentElement.style.display = 'flex'
+            this.loggedIn.style.display = 'none'
+        } 
+        else if (user !== 'ANONYMOUS'){
+            // displays logged in buttons
+            this.signUpBtn.parentElement.style.display = 'none'
+            this.loggedIn.style.display = 'flex'
+            this.username.textContent = user
+        }
+    }
+    signUp() {
+        // opens sign up page
         this.signUpBtn.addEventListener('click',()=>{
             this.signUpPage.style.display = 'flex'
         })
-        this.logInBtn.addEventListener('click',()=>{
-            this.logInPage.style.display = 'flex'
-        })
-
+        // creates account
         this.createAccountBtn.addEventListener('click',()=>{
             if (this.createUsername.value && this.createUsername.value.length < 21 && this.createPassword.value && this.confirmPassword.value && this.createPassword.value === this.confirmPassword.value){
                 const data = {
                     user: this.createUsername.value,
                     password: this.createPassword.value
                 }
+                // sends user and password to signup api
                 fetch(`${host}/api/signUp`, {
                     method: "POST",
                     headers: {
@@ -44,10 +62,12 @@ class AccountHandler {
                     },
                     body: JSON.stringify(data)
                 }).then(res => res.json()).then(obj => {
+                    // displays error if responds with error
                     if (obj.result.error) {
                         this.createAccountError.style.display = 'block'
                         this.createAccountError.textContent = obj.result.error
                     }
+                    // displays success message and logs in if successful signup
                     else {
                         this.createAccountBtn.parentNode.style = 'none'
                         this.message.style.display = 'flex';
@@ -58,6 +78,7 @@ class AccountHandler {
                         this.userInit()
                     }
                 })
+            // error messages
             } else if (this.createUsername.value.length > 20) {
                 this.createAccountError.style.display = 'block'
                 this.createAccountError.innerText = 'Username too long'
@@ -66,16 +87,27 @@ class AccountHandler {
                 this.createAccountError.innerText = 'Passwords do not match'
             }
         })
+    }
+    login(){
+        // opens login page
+        this.logInBtn.addEventListener('click',()=>{
+            this.logInPage.style.display = 'flex'
+        })
+        // sets user to anonymous when logout pressed
         this.logOutBtn.addEventListener('click', ()=>{
             localStorage.setItem('user', 'ANONYMOUS')
             this.userInit()
         })
+        // login event listener
         this.login.addEventListener('click',()=>{
+            // sends username and password to login endpoint
             fetch(`${host}/api/login?user=${this.loginUsername.value}&password=${this.loginPassword.value}`).then(res => res.json()).then(obj => {
+                // displays error if theres an error
                 if (obj.result.error) {
                     this.loginError.style.display = 'block'
                     this.loginError.textContent = obj.result.error
                 }
+                // logs in if successful
                 else {
                     this.loginError.parentNode.style = 'none'
                     this.message.style.display = 'flex';
@@ -87,21 +119,10 @@ class AccountHandler {
                 }
             })
         })
-
-    }
-    userInit(){
-        let user = localStorage.getItem('user')
-        if (!user || user === 'ANONYMOUS') {
-            localStorage.setItem('user', 'ANONYMOUS')
-            this.signUpBtn.parentElement.style.display = 'flex'
-            this.loggedIn.style.display = 'none'
-        } 
-        else if (user !== 'ANONYMOUS'){
-            this.signUpBtn.parentElement.style.display = 'none'
-            this.loggedIn.style.display = 'flex'
-            this.username.textContent = user
-        }
     }
 }
+// initializes account handler
 const account = new AccountHandler
 account.userInit()
+account.signUp()
+account.login()
