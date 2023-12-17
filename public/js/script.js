@@ -4,6 +4,7 @@ const inputMovie = document.getElementById('input-movie')
 const similarMovies = document.getElementById('similar-movies')
 const leftButton = document.getElementById('scroll-left')
 const rightButton = document.getElementById('scroll-right')
+const main = document.querySelector('main')
 
 // gets similar movies when enter key pressed
 inputMovie.addEventListener('keydown', e=>{
@@ -15,8 +16,9 @@ inputMovie.addEventListener('keydown', e=>{
             if (movies.error) {
                 similarMovies.innerHTML = `<h1>${movies.error}</h1>`
             } else {
+                main.style.background = `url(https://www.themoviedb.org/t/p/w440_and_h660_face${movies.movie.poster_path}) no-repeat fixed center`
                 // takes each movie writes its information with an ul
-                movies.forEach(movie =>{
+                movies.similar.forEach(movie =>{
                     const li = document.createElement('li')
                     // img path template
                     let imgPath = 'https://www.themoviedb.org/t/p/w440_and_h660_face'

@@ -88,7 +88,7 @@ class AccountHandler {
             }
         })
     }
-    login(){
+    logIn(){
         // opens login page
         this.logInBtn.addEventListener('click',()=>{
             this.logInPage.style.display = 'flex'
@@ -124,5 +124,5 @@ class AccountHandler {
 // initializes account handler
 const account = new AccountHandler
 account.userInit()
+account.logIn()
 account.signUp()
-account.login()

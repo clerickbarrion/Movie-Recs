@@ -21,9 +21,9 @@ const options = {
 };
 
 // uses search movie api to get movie id
-async function getMovieId(movie){
+async function getMovie(movie){
     const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURI(movie)}&include_adult=false&language=en-US&page=1`
-    return fetch(url,options).then(res=>res.json()).then(json=>json.results[0].id)
+    return fetch(url,options).then(res=>res.json()).then(json=>json.results[0])
 }
 
 // uses similar movies api to get similar movies
@@ -36,11 +36,11 @@ async function getSimilarMovies(id) {
 app.get('/api/movie', async (req,res)=>{
     try{
         // gets id from query
-        const id = await getMovieId(req.query.search)
+        const movie = await getMovie(req.query.search)
         // uses id to use similar movies api
-        const movies = await getSimilarMovies(id)
+        const movies = await getSimilarMovies(movie.id)
         // writes it
-        res.write(JSON.stringify(movies))
+        res.write(JSON.stringify({movie: movie,similar:movies}))
     } catch {
         res.write(JSON.stringify({error: 'Movie does not exist'}))
     }
